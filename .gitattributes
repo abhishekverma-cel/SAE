@@ -15,3 +15,5 @@
 *.PDF	 diff=astextplain
 *.rtf	 diff=astextplain
 *.RTF	 diff=astextplain
+.php filter=lfs diff=lfs merge=lfs -text
+c:\wamp\www\sae\* filter=lfs diff=lfs merge=lfs -text
