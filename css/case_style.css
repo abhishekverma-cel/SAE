@@ -13,8 +13,9 @@ overflow: hidden;
     padding-left: 10px;
 }
 
-#header h2{
+#header h2 a{
     color: white;
+    text-decoration: none;
 }
 
 #subheader{
@@ -62,9 +63,11 @@ overflow: hidden;
 }
 
 #data{
-   
-     /*border:solid red;*/
-     overflow: auto;
+    margin-top: 20px;
+     position: relative;
+     float: left;  
+     border:solid red;
+     overflow: visible;
      /*min-height:calc(100% - 200px);*/
     
 }
@@ -102,6 +105,7 @@ overflow: hidden;
 
 #footer {
     position: fixed;
+    float: left;
     height: 50px;
     width: 100%;
     bottom: 0px;
@@ -116,16 +120,19 @@ overflow: hidden;
     overflow: visible;
 }
 
-#footer #remark table a{
+#footer #remark table .but{
    
    color:white;
-   background: darkgreen;
-   margin-top: 10px;
-   text-decoration: none;
+   display: inline-block;
+   
    padding-left: 10px;
    padding-right: 10px;
    padding-top: 5px;
    padding-bottom: 5px;
+   border-style:none;
+    font-family: "Bitter",serif;
+  line-height: 1.8;
+   box-shadow: none;
     
 }
 

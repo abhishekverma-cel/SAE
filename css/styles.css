@@ -324,16 +324,14 @@
 #data_container{
     margin: 0px;
     padding: 0px;
-    position: absolute;
-    top:100px;
+    position: relative;
+    /*top:100px;*/
     left: -8px;
     width: 100%;
-    height: 80%;
+    height: 90%;
     overflow-x: auto;
     white-space: nowrap;
-    border-style: solid;
-    border-color: #71c8db;
-    border-width: 10px;
+    
   }
 
  
@@ -345,7 +343,7 @@ table#pending_data{
  
 
 body{
-    background:   #71c8db ;
+    background:   whitesmoke ;
     overflow: hidden;
      margin: 0;
     padding: 0;
@@ -372,18 +370,18 @@ table#pending_data tr:nth-child(odd) {
 }
 
 table#pending_data th	{
-   background-color: #7fd22d;
+   background-color: #0088cc;
     color: white;
 }
 
 table#pending_data tr:hover{
-    background-color: #f0a8a8;
+    background-color: #cceeff;
     font-weight: bolder;
 }
 
 .button {
     
-    background-color: #4CAF50; /* Green */
+    background-color: #00b2b3; /* Green */
     border: none;
     color: white;
     padding: 10px 20px;

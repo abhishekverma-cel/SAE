@@ -12,17 +12,32 @@
 
 <body>
     
+    <!-- =============================Menu Bar===========================-->
+    <div id='cssmenu'>
+<ul>
+   <li class='active'><a href='./index.php'><span>PENDING</span></a></li>
+   <li ><a href="./approved.php"><span>APPROVED</span></a></li>
+   <li><a href='./it.php'><span>IT VERIFICATION</span></a></li>
+   <li><a href='./field.php'><span>FIELD VERIFICATION</span></a></li>
+   <li><a href='./disapproved.php'><span>DISAPPROVED</span></a></li>
+   <li><a href='./review.php'><span>RE-REVIEW</span></a></li>
+</ul>
+</div>
+    
  <?php
  
  include("lib/dbconnect.php");
  
+ $con = new database_connect();
+ 
+ 
 try {
    
     /*** The SQL SELECT statement ***/
-    $sql = "SELECT * FROM SAE.CurrentSAE";
+    $sql = "SELECT * FROM SAE.CurrentSAE WHERE REVIEW_STATUS=1 ";
       $i = 0;
         echo "<div id = data_container>";
-        echo"<table id = 'pending_data' border=".'"1"'."style=".'"width:100%"'.">";
+        echo "<table id = 'pending_data' border=".'"1"'."style=".'"width:100%"'.">";
         
         //Table heading
         echo"<thead>";
@@ -41,7 +56,13 @@ try {
         echo" </thead> ";
         
         echo"<tbody>";
-        foreach ($db->query($sql) as $row)
+        
+        $stmt = $con->db->prepare($sql);
+        $stmt->execute();
+        
+        $result=$stmt->fetchall();
+        
+       foreach ($result as $row )
         {$i=$i+1;
        // print $row['Unit'] .' - '. $row['SubUnit'] . '<br />';
          echo"<tr>";
@@ -55,19 +76,21 @@ try {
         echo" <td nowrap>".$row['Date_Received']."</td>";
         echo ' <td nowrap><a href="./case_view.php?action=open&recordkey='.urlencode($row['recordid']).'"class="button">OPEN</a></td>';
         echo" </tr> ";
-        
-        
         }
+        
+        
+       // while($row=$stmt->mysql_fetch_object)
+       
         echo"</tbody>";
-      echo" </table>"; 
-      echo"</div>";
+        echo" </table>"; 
+        echo"</div>";
         
         
 
       
 
-    /*** close the database connection ***/
-    $db = null;
+         /*** close the database connection ***/
+        $con = null;
 }
 catch(PDOException $e)
     {
@@ -81,15 +104,7 @@ catch(PDOException $e)
     
  
 
-<div id='cssmenu'>
-<ul>
-   <li class='active'><a href='#'><span>PENDING</span></a></li>
-   <li ><a href='#'><span>APPROVED</span></a></li>
-   <li><a href='#'><span>IT VERIFICATION</span></a></li>
-   <li><a href='#'><span>FIELD VERIFICATION</span></a></li>
-   <li><a href='#'><span>DISAPPROVED</span></a></li>
-</ul>
-</div>
+
 
 
 
