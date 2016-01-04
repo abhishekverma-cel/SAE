@@ -18,7 +18,7 @@
    <li class='active'><a href="./approved.php"><span>APPROVED</span></a></li>
    <li><a href='./it.php'><span>IT VERIFICATION</span></a></li>
    <li><a href='./field.php'><span>FIELD VERIFICATION</span></a></li>
-   <li><a href='/disapproved.php'><span>DISAPPROVED</span></a></li>
+   <li><a href='./disapproved.php'><span>DISAPPROVED</span></a></li>
    <li><a href='./review.php'><span>RE-REVIEW</span></a></li>
 </ul>
 </div>
@@ -33,14 +33,14 @@
 try {
    
     /*** The SQL SELECT statement ***/
-    $sql = "SELECT * FROM SAE.CurrentSAE WHERE recordid IN(select v.recordid from sae.v_current_sae_status v where v.STATUS = 1)";
+    $sql = "SELECT t.* FROM SAE.CurrentSAE t join sae.v_current_sae_status v on t.recordid = v.recordid and v.STATUS = 1";
       $i = 0;
         echo "<div id = data_container>";
         echo "<table id = 'pending_data' border=".'"1"'."style=".'"width:100%"'.">";
         
         //Table heading
-        echo"<thead>";
-        echo"<tr class=".'"header"'.">";
+        echo'<thead>';
+        echo '<tr class="header" style="background-color: #00cc65;">';
         echo" <th nowrap>SrNo</th>";
         echo" <th nowrap>SOURCE</th>";
         echo" <th nowrap>WOMAN ID</th>";

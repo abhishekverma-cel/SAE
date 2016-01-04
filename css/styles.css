@@ -352,7 +352,7 @@ body{
 
 tbody{
     background: lightgray;
-   
+    font-size: 15pt;
 }
 
 th, td {
@@ -361,6 +361,8 @@ th, td {
     border-style: none;
     font-family: serif;
    }
+   
+
 
 table#pending_data tr:nth-child(even) {
     background-color: #eee;
@@ -370,7 +372,7 @@ table#pending_data tr:nth-child(odd) {
 }
 
 table#pending_data th	{
-   background-color: #0088cc;
+   
     color: white;
 }
 
@@ -390,4 +392,28 @@ table#pending_data tr:hover{
     display: inline-block;
     font-size: 20px;
     border-radius: 10px;
+}
+
+
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+::-webkit-scrollbar-track {
+	background-color: rgba(113,112,107,0.1);
+	-webkit-border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:vertical {
+	background-color: #2d97af;
+	-webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:vertical:hover,
+::-webkit-scrollbar-thumb:horizontal:hover {
+	background: #51bbd2;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+	background-color: rgba(0,0,0,.2);
+	-webkit-border-radius: 6px;
 }

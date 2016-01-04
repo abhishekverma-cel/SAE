@@ -34,14 +34,14 @@
 try {
    
     /*** The SQL SELECT statement ***/
-    $sql = "SELECT * FROM SAE.CurrentSAE WHERE recordid IN(select v.recordid from sae.v_current_sae_status v where v.STATUS = 2)";
+    $sql = "SELECT t.* FROM SAE.CurrentSAE t join sae.v_current_sae_status v on t.recordid = v.recordid and v.STATUS =2 ";
       $i = 0;
         echo "<div id = data_container>";
         echo "<table id = 'pending_data' border=".'"1"'."style=".'"width:100%"'.">";
         
         //Table heading
         echo"<thead>";
-        echo"<tr class=".'"header"'.">";
+        echo '<tr class="header" style="background-color: #ff6666;">';
         echo" <th nowrap>SrNo</th>";
         echo" <th nowrap>SOURCE</th>";
         echo" <th nowrap>WOMAN ID</th>";

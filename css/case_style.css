@@ -7,7 +7,7 @@ overflow: hidden;
 
 #header {
     width: 100%;
-    background: black;
+    background: #e67100;
     padding-top: 10px;
     padding-bottom: 5px;
     padding-left: 10px;
@@ -27,9 +27,10 @@ overflow: hidden;
 }
 
 #subheader table{
-    padding-top: 5px;
+    /*padding-top: 5px;*/
     margin-left: auto;
     margin-right: auto;
+    
     
     
 }
@@ -42,7 +43,7 @@ overflow: hidden;
 }
 
 #subheader td.value{
-    color: mediumseagreen;
+    color: #ff7d00;
     padding-left: 5px;
     font-family: Arial, Helvetica, sans-serif;
     font-size: large;
@@ -63,18 +64,39 @@ overflow: hidden;
 }
 
 #data{
-    margin-top: 20px;
+    width:50em;
+     height: 32em;
+    /*margin-top: 20px;*/
      position: relative;
      float: left;  
-     border:solid red;
-     overflow: visible;
+     /*border:solid red;*/
+     overflow: hidden;
      /*min-height:calc(100% - 200px);*/
+     box-sizing: border-box;
+     
     
 }
+
+#data:hover{
+    width:50em;
+     height: 32em;
+    /*margin-top: 20px;*/
+     position: relative;
+     float: left;  
+     /*border:solid red;*/
+     overflow: auto;
+     /*min-height:calc(100% - 200px);*/
+     box-sizing: border-box;
+     
+    
+}
+
+
 
 #data table{
     border-collapse: collapse;
     margin-top: 25px;
+    margin-bottom: 10em;
     margin-left: auto;
     margin-right: auto;
 }
@@ -101,6 +123,126 @@ overflow: hidden;
 }
 
 
+#remark_container{
+    height: 32em;
+    position: relative;
+    float: right;
+    /*border: solid;
+    border-color: blue;*/
+    width:30em;
+    overflow: hidden;
+    
+}
+
+#remark_container:hover{
+    height: 32em;
+    position: relative;
+    float: right;
+   /* border: solid;
+    border-color: blue;*/
+    width:30em;
+    overflow: auto;
+    
+}
+
+/*===============Remark box=====================*/
+
+.tip {
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  background: transparent;
+  border: 10px solid #00e6ac;
+}
+
+.tip-left {
+  top: 10px;
+  left: -25px;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.tip-right {
+  top: 10px;
+  right: -25px;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;  
+}
+
+.dialogbox{
+    /*border:solid;
+    border-color: red;*/
+    margin-top: 2em;
+    margin-bottom: 1em;
+    
+}
+.dialogbox .icon{
+  position: static;
+  /*max-width: px;*/
+  /*height: auto;*/
+  /*margin-top: 10px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  margin-left: 100px;
+  border:solid;
+  border-color: pink;*/
+  float: left;
+  padding: 1em;
+  /*margin: 30px 20px;*/
+ 
+  /*padding: 5px;*/
+  /*background-color:  #00cc99;
+  border-radius: 100%;
+  border: 1px solid  #00e6ac;*/
+  margin-left: 20PX;
+  width:30px;
+height:30px;
+border-radius:50%;
+font-size:20Px;
+font-weight: bolder;
+color: gray;
+line-height:30px;
+text-align:center;
+background: #ffcc80;
+  
+  
+}
+
+.dialogbox .body {
+  position: relative;
+  max-width: 300px;
+  height: auto;
+  /*margin-top: 30px;*/
+  margin-right: 10px;
+  margin-left: 150px;
+  /*margin: 30px 20px;*/
+ 
+  padding: 5px;
+  background-color:  #00cc99;
+  border-radius: 3px;
+  border: 5px solid  #00e6ac;
+}
+
+.body .message {
+  min-height: 30px;
+  border-radius: 3px;
+  font-family: Arial;
+  font-size: 14pt;
+  line-height: 1.5;
+  color: black;
+}
+
+.body .time {
+  text-align: right;
+  font-family: Arial;
+  font-size: 8pt;
+  line-height: 1.5;
+  color: #006666;
+}
+
+
 /*Footer CSS*/
 
 #footer {
@@ -115,7 +257,7 @@ overflow: hidden;
 #footer #remark table {
    
    color:white;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
     
     overflow: visible;
 }
@@ -133,6 +275,35 @@ overflow: hidden;
     font-family: "Bitter",serif;
   line-height: 1.8;
    box-shadow: none;
+   border-radius: 4px;
     
 }
 
+
+
+/*Scroll bar design*/
+
+
+
+
+::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+}
+::-webkit-scrollbar-track {
+	background-color: rgba(113,112,107,0.1);
+	-webkit-border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:vertical {
+	background-color: rgba(0,0,0,.2);
+	-webkit-border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:vertical:hover,
+::-webkit-scrollbar-thumb:horizontal:hover {
+	background: #00e6ac;
+}
+
+::-webkit-scrollbar-thumb:horizontal {
+	background-color: rgba(0,0,0,.2);
+	-webkit-border-radius: 6px;
+}

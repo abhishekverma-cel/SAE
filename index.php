@@ -26,6 +26,9 @@
     
  <?php
  
+ session_start();
+ $_SESSION['page_id'] = 'research';
+ 
  include("lib/dbconnect.php");
  
  $con = new database_connect();
@@ -41,7 +44,7 @@ try {
         
         //Table heading
         echo"<thead>";
-        echo"<tr class=".'"header"'.">";
+        echo '<tr class="header" style="background-color: #007fff;">';
         echo" <th nowrap>SrNo</th>";
         echo" <th nowrap>SOURCE</th>";
         echo" <th nowrap>WOMAN ID</th>";
@@ -74,7 +77,7 @@ try {
         echo" <td nowrap>".$row['Date_of_Event_Capture']."</td>";
         echo" <td nowrap>".$row['Date_of_Enrollment']."</td>";
         echo" <td nowrap>".$row['Date_Received']."</td>";
-        echo ' <td nowrap><a href="./case_view.php?action=open&recordkey='.urlencode($row['recordid']).'"class="button">OPEN</a></td>';
+        echo ' <td nowrap><a href="./case_view.php?action=open&tab=pending&recordkey='.urlencode($row['recordid']).'"class="button">OPEN</a></td>';
         echo" </tr> ";
         }
         

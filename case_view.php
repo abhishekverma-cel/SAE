@@ -11,22 +11,47 @@
 </head>  
 
 <?php
+$page_id = basename($_SERVER['HTTP_REFERER']);
 
-$action= $_GET['action'];
-$id=$_GET['recordkey'];
+
+$action = $_GET['action'];
+$id = $_GET['recordkey'];
+if(isset($_GET['tab']))
+{
+$tab = $_GET['tab'];
+}
+else $tab =0;
 
 
  include("lib/dbconnect.php");
  $con = new database_connect();
+ $con2 = new database_connect();
  
  
  try {
- $sql = "Select * From SAE.CurrentSAE WHERE recordid = '$id'";
+    $sql = "Select * From SAE.CurrentSAE WHERE recordid = '$id'";
  
-  $stmt = $con->db->prepare($sql);
-  $stmt->execute();
+    $stmt = $con->db->prepare($sql);
+    $stmt->execute();
         
   $row = $stmt->fetch(PDO::FETCH_ASSOC);
+ 
+    }
+catch(PDOException $e)
+    {
+    echo $e->getMessage();
+    }
+    
+    
+    // new query for Remarks
+ try {
+ $sql2 = "Select * From SAE.remark WHERE recordid = '$id' order by Remark_time";
+ 
+  $stmt2 = $con2->db->prepare($sql2);
+  $stmt2->execute();
+        
+  $remark = $stmt2->fetchall();
+  
  
  }
 catch(PDOException $e)
@@ -47,6 +72,8 @@ catch(PDOException $e)
  
  <!-- =================Header====================== -->
  <div id = "header">
+     <!--<div class = "logo" >
+         <img src="./resources/logo.png" alt="CEL LOGO" style="width:304px;height:228px;"> </div>-->
      <h2><a href=".\index.php">SAE CASE</a></h2>
  </div>  
  
@@ -150,7 +177,28 @@ catch(PDOException $e)
  </div>
  
  <div id = remark_container >
- 
+    <?php foreach($remark as $rem){
+        echo '<div class="dialogbox">'; ?>
+        
+        <div class = "icon">
+            <span><?php echo $rem['Remark_by']; ?></span>            
+        </div>
+        
+        
+        
+     <?php   echo    '<div class="body">';
+        echo        '<span class="tip tip-left"></span>';
+                   echo '<div class="message">';
+                   echo "<span>".$rem['Remark']."</span>";
+                   echo '</div>';
+                   
+                   echo '<div class="time">';
+                   echo "<span>".$rem['Remark_time']."</span>";
+                   echo '</div>';
+            echo '</div>';
+        echo '</div>';
+        } 
+       ?>
  </div>
  <!--=================End of data div============================-->
  
@@ -164,11 +212,49 @@ catch(PDOException $e)
         <form id="remark_form" action="update_data.php" method="GET" > 
             <td> REMARK:</td>
             <td><input type="text" size="90" name="remark" required></td>
-            <input type='hidden' name='case_id' value="<?php echo "$id";?>" /> 
-            <td><input type = "submit" value="APPROVED" name="action" class="but" style="background:#339966;" ></input></td>
-            <td><input type = "submit" value="DIS-APPROVED" name= "action" class="but" style="background:#ff944d;"></input></td>
-            <td><input type = "submit" value="SEND TO IT" name= "action" class="but" style="background:#ffba33;"></input></td>
-            <td><input type = "submit" value="SEND TO FIELD" name= "action" class="but" style="background:#6699ff;"></input></td>
+            <input type='hidden' name='case_id' value="<?php echo "$id";?>" />
+            <input type='hidden' name='page_id' value="<?php echo "$page_id";?>" />  
+            
+            <?php switch($tab) {
+                
+                case "pending":?>
+                                <td><input type = "submit" value="APPROVED" name="action" class="but" style="background:#339966;" ></input></td>
+                                <td><input type = "submit" value="DIS-APPROVED" name= "action" class="but" style="background:#ff944d;"></input></td>
+                                <td><input type = "submit" value="SEND TO IT" name= "action" class="but" style="background:#ffba33;"></input></td>
+                                <td><input type = "submit" value="SEND TO FIELD" name= "action" class="but" style="background:#6699ff;"></input></td>
+                      <?php break; 
+                case "it": ?>
+                                
+                                <td><input type = "submit" value="RE-REVIEW" name= "action" class="but" style="background:#ffba33;"></input></td>
+                                <td><input type = "submit" value="SEND TO FIELD" name= "action" class="but" style="background:#6699ff;"></input></td>
+                      <?php break; 
+                      
+                      
+                case "field":?>
+                                
+                                <td><input type = "submit" value="RE-REVIEW" name= "action" class="but" style="background:#ff944d;"></input></td>
+                                <td><input type = "submit" value="SEND TO IT" name= "action" class="but" style="background:#ffba33;"></input></td>
+                                
+                      <?php break;
+                      
+                case "review":?>
+                                
+                                <td><input type = "submit" value="APPROVED" name="action" class="but" style="background:#339966;" ></input></td>
+                                <td><input type = "submit" value="DIS-APPROVED" name= "action" class="but" style="background:#ff944d;"></input></td>
+                                <td><input type = "submit" value="SEND TO IT" name= "action" class="but" style="background:#ffba33;"></input></td>
+                                <td><input type = "submit" value="SEND TO FIELD" name= "action" class="but" style="background:#6699ff;"></input></td>
+                                
+                      <?php break;
+                DEFAULT:?>
+                                <td><input type = "submit" value="APPROVED" name="action" class="but" style="background:#339966;" ></input></td>
+                                <td><input type = "submit" value="DIS-APPROVED" name= "action" class="but" style="background:#ff944d;"></input></td>
+                                <td><input type = "submit" value="SEND TO IT" name= "action" class="but" style="background:#ffba33;"></input></td>
+                                <td><input type = "submit" value="SEND TO FIELD" name= "action" class="but" style="background:#6699ff;"></input></td>
+                      <?php break;  
+            }?>
+            
+                
+            
             
             </form>
             

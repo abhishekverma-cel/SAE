@@ -34,14 +34,14 @@
 try {
    
     /*** The SQL SELECT statement ***/
-    $sql = "SELECT * FROM SAE.CurrentSAE WHERE recordid IN(select v.recordid from sae.v_current_sae_status v where v.STATUS = 4)";
+    $sql = "SELECT t.* FROM SAE.CurrentSAE t join sae.v_current_sae_status v on t.recordid = v.recordid and v.STATUS = 4";
       $i = 0;
         echo "<div id = data_container>";
         echo "<table id = 'pending_data' border=".'"1"'."style=".'"width:100%"'.">";
         
         //Table heading
         echo"<thead>";
-        echo"<tr class=".'"header"'.">";
+        echo '<tr class="header" style="background-color:#cbcc00;">';
         echo" <th nowrap>SrNo</th>";
         echo" <th nowrap>SOURCE</th>";
         echo" <th nowrap>WOMAN ID</th>";
@@ -74,7 +74,7 @@ try {
         echo" <td nowrap>".$row['Date_of_Event_Capture']."</td>";
         echo" <td nowrap>".$row['Date_of_Enrollment']."</td>";
         echo" <td nowrap>".$row['Date_Received']."</td>";
-        echo ' <td nowrap><a href="./case_view.php?action=open&recordkey='.urlencode($row['recordid']).'"class="button">OPEN</a></td>';
+        echo ' <td nowrap><a href="./case_view.php?action=open&tab=field&recordkey='.urlencode($row['recordid']).'"class="button">OPEN</a></td>';
         echo" </tr> ";
         }
         
